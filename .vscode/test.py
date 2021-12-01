@@ -12,8 +12,9 @@ if __name__ == '__main__':
 
     try:
         func(50,20)
-        test_a(10,2)
+        test_a(10,0)
         pass
     except Exception as e:
+        test_a(10,1)
         print('따시')
         pass
