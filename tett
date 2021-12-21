@@ -1,0 +1,26 @@
+import rospy ,math
+from geometry_msgs.msg import Twist
+
+def main():
+    rospy.init_node('rotate')
+    relative_angle = math.radians(75)
+    angular_speed = 1.0
+    duration = relative_angle / angular_speed
+    time2end =  rospy.Time.now() + rospy.Duration(duration)
+
+    pub = rospy.Publisher('/cmd_vel',Twist, queue_size=10)
+
+    msg = Twist()
+    msg.angular.z = angular_speed
+
+    while rospy.Time.now()< time2end:
+        pub.publish(msg)
+
+        rospy.sleep(0.01)
+
+    msg.angular.z = 0.0
+
+    pass
+
+if __name__ == '__main__':
+    main()
